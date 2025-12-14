@@ -117,52 +117,273 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             background: linear-gradient(45deg, #d4d4d4, transparent);
     }
 
+   .navbar {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-bottom: none;
+    padding: 0 2rem;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.brand-icon {
+    font-size: 2rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.navbar-nav {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link, .user-link {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link::before, .user-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.nav-link:hover::before, .user-link:hover::before {
+    left: 100%;
+}
+
+.nav-link:hover, .user-link:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.nav-link.active, .user-link.active {
+    color: #ffd700;
+    background: rgba(255, 215, 0, 0.2);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.nav-icon {
+    font-size: 1.1rem;
+    transition: transform 0.2s ease;
+}
+
+.nav-link:hover .nav-icon, .user-link:hover .nav-icon {
+    transform: scale(1.2) rotate(10deg);
+}
+
+.user-item {
+    margin-right: 1rem;
+}
+
+.user-link {
+    font-weight: 500;
+}
+
+.notification-item {
+    position: relative;
+}
+
+.notification-wrapper {
+    position: relative;
+}
+
+.notification-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 0.75rem;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.notification-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.notification-icon {
+    font-size: 1.2rem;
+}
+
+.badge {
+    background: #ff4757;
+    color: white;
+    border-radius: 50%;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+    min-width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.notification-popup {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    min-width: 300px;
+    max-width: 350px;
+    max-height: 400px;
+    overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1001;
+    border: 1px solid #e2e8f0;
+}
+
+.notification-popup.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #e2e8f0;
+    background: #f8fafc;
+    border-radius: 12px 12px 0 0;
+}
+
+.popup-header h4 {
+    margin: 0;
+    color: #334155;
+    font-size: 1.1rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #64748b;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.close-btn:hover {
+    background: #e2e8f0;
+}
+
+.notification-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.notification-list li {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #f1f5f9;
+    transition: background 0.2s;
+    cursor: pointer;
+}
+
+.notification-list li:hover {
+    background: #f8fafc;
+}
+
+.notification-list li:last-child {
+    border-bottom: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
     .navbar {
-        background: white;
-        border-bottom: 1px solid #e2e8f0;
-        padding: 0 2rem;
-        height: 64px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        padding: 0 1rem;
+        flex-wrap: wrap;
+        height: auto;
+        min-height: 70px;
     }
 
     .navbar-brand {
         font-size: 1.5rem;
-        font-weight: bold;
-        color: #4f46e5;
     }
 
     .navbar-nav {
-        display: flex;
-        list-style: none;
-        gap: 2rem;
-        align-items: center;
-    }
-
-    .nav-link {
-        text-decoration: none;
-        color: #64748b;
-        font-size: 0.875rem;
-        padding: 0.5rem 1rem;
-        border-radius: 0.375rem;
-        transition: all 0.2s;
-        display: flex;
-        align-items: center;
         gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
-    .nav-link:hover {
-        color: #334155;
-        background-color: #f1f5f9;
+    .nav-link, .user-link {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
     }
 
-    .nav-link.active {
-        color: #4f46e5;
-        background-color: #eef2ff;
+    .notification-popup {
+        min-width: 280px;
+        right: -50%;
     }
-
+}
     .main-container {
         max-width: 1400px;
         margin: 0 auto;
