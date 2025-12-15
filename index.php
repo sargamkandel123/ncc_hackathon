@@ -3,7 +3,6 @@ session_start();
 include 'config.php';
 include "noti.php";
 
-
 $message = '';
 
 if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
@@ -34,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $date = new DateTime('now', new DateTimeZone('Asia/Kathmandu')); // Adjust timezone for +0545
             $weekStart = $date->modify('monday this week')->format('Y-m-d 00:00:00');
             $weekEnd = $date->modify('sunday this week')->format('Y-m-d 23:59:59');
-
+//sargam
             // Check the number of posts by the user in the current week
             $sqlCount = "SELECT COUNT(*) as post_count 
                          FROM problem_posts 
@@ -104,6 +103,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Aawaz - Community Issues</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+
     * {
         margin: 0;
         padding: 0;
@@ -111,14 +112,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         font-family: "Google Sans", sans-serif;
         /* background: linear-gradient(135deg, #e5e7eb 0%, #ffffff 100%); */
+        background: #f9fcff;
         min-height: 100vh;
-            background: linear-gradient(45deg, #d4d4d4, transparent);
     }
 
    .navbar {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-bottom: none;
     padding: 0 2rem;
     height: 70px;
@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 .navbar-brand {
     font-size: 1.8rem;
     font-weight: bold;
-    color: white;
+    color: rgb(0, 0, 0);
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -162,11 +162,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 .nav-link, .user-link {
+    font-family: ;
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(0, 0, 0, 0.9);
     font-size: 0.95rem;
     padding: 0.75rem 1.25rem;
-    border-radius: 50px;
+    /* border-radius: 50px; */
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
@@ -175,6 +176,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     border: 1px solid rgba(255, 255, 255, 0.2);
     position: relative;
     overflow: hidden;
+    font-weight: 550;
+}
+
+nav li a:hover{
+    border-radius: 50px;
 }
 
 .nav-link::before, .user-link::before {
@@ -193,14 +199,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 .nav-link:hover, .user-link:hover {
-    color: white;
+    color: rgb(61, 61, 61);
     background: rgba(255, 255, 255, 0.15);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .nav-link.active, .user-link.active {
-    color: #ffd700;
+    color: #494637;
     background: rgba(255, 215, 0, 0.2);
     box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
 }
@@ -213,7 +219,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 .nav-link:hover .nav-icon, .user-link:hover .nav-icon {
     transform: scale(1.2) rotate(10deg);
 }
+.usersec{
+    background-color: #4444e8;
+    border-radius: 8px;
 
+}
+.usersec a:hover{
+    color: white;
+}
+.usersec a{
+    color: white;
+}
+.usersec span{
+    color: white;
+}
 .user-item {
     margin-right: 1rem;
 }
@@ -385,46 +404,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
     .main-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 2rem;
-        display: grid;
-        grid-template-columns: 1fr 300px;
-        gap: 2rem;
+       display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    max-width: 1500px;
+    margin: 0 auto;
     }
-
     .content {
         background: rgba(255, 255, 255, 0.98);
         backdrop-filter: blur(12px);
         border-radius: 20px;
-        padding: 2rem;
-        /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08); */
-        border: 1px solid rgba(255, 255, 255, 0.3);
+        /* padding: 2rem; */
+        /* border: 2px solid rgba(125, 125, 125, 0.3); */
+        box-shadow: 0 4px 6px rgba(125, 125, 125, 0.3);
     }
 
     .search-container {
         margin-bottom: 2rem;
+            margin: 0 0 0 -452px;
     }
 
     .search-box {
         position: relative;
-        max-width: 600px;
+        max-width: 1000px;
         margin: 0 auto;
     }
 
     .search-input {
         width: 100%;
         padding: 1rem 1.5rem 1rem 3rem;
-        border: 2px solid transparent;
-        /* background: linear-gradient(145deg, #ffffff, #f1f5f9); */
+        border: 2px solid #4444e8;
         border-radius: 50px;
         font-size: 1rem;
         outline: none;
         transition: all 0.3s ease;
-        box-shadow:
-            inset 0 2px 4px rgba(0, 0, 0, 0.05),
-            0 4px 16px rgba(0, 0, 0, 0.05);
-        /* margin: 0 -40px 00; */
+        box-shadow: 2px 4px 6px #b2b2f9ff
+        
     }
 
     .search-input:focus {
@@ -450,6 +466,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         align-items: center;
         justify-content: space-between;
         margin-bottom: 1.5rem;
+        padding: 1.5rem;
+        border-bottom: 1px solid rgb(218, 218, 218);
     }
 
     .section-title {
@@ -465,148 +483,189 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     .issue-card {
-        background: linear-gradient(145deg, #ffffff, #fafbfc);
-        border-radius: 16px;
-        padding: 1.5rem;
-        margin-bottom: 1.5rem;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-        border: 1px solid rgba(226, 232, 240, 0.5);
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-        cursor: pointer;
-    }
+    background: linear-gradient(145deg, #ffffff, #fafbfc);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(226, 232, 240, 0.5);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    height: 220px;
+}
 
-    .issue-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, #4f46e5, #7c3aed);
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.3s ease;
-    }
+.issue-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #4f46e5, #7c3aed);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
 
-    .issue-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-    }
+.issue-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
 
-    .issue-card:hover::before {
-        transform: scaleX(1);
-    }
+.issue-card:hover::before {
+    transform: scaleX(1);
+}
 
-    .issue-header {
-        display: flex;
-        gap: 1rem;
-        align-items: flex-start;
-    }
+.issue-header {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    height: 100%;
+}
 
-    .issue-image {
-        width: 80px;
-        height: 80px;
-        background: linear-gradient(145deg, #f1f5f9, #e2e8f0);
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2rem;
-        color: #94a3b8;
-        flex-shrink: 0;
-        flex: 0 0 30%;
-        max-width: 30%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-    }
+.issue-image {
+    flex: 0 0 30%;
+    max-width: 30%;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-    .netflix-image {
-        background: linear-gradient(145deg, #000, #333);
-        color: #e50914;
-        font-weight: bold;
-        font-size: 0.7rem;
-    }
+.issue-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
 
-    .issue-content {
-        flex: 1;
-    }
+.netflix-image {
+    background: linear-gradient(145deg, #000, #333);
+    color: #e50914;
+    font-weight: bold;
+    font-size: 0.7rem;
+}
 
-    .issue-title {
-        font-size: 1.25rem;
-        font-weight: 600;
-        color: #1e293b;
-        margin-bottom: 0.5rem;
-    }
+.issue-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
+    padding: 0.5rem 0;
+}
 
-    .issue-meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        margin-bottom: 1rem;
-        font-size: 0.875rem;
-        color: #64748b;
-    }
+.issue-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.4rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
-    .issue-meta span {
-        display: flex;
-        align-items: center;
-        gap: 0.25rem;
-    }
+.issue-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    color: #64748b;
+}
 
-    .issue-description {
-        color: #475569;
-        line-height: 1.6;
-        margin-bottom: 1rem;
-    }
+.issue-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
 
-    .issue-stats {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-        font-size: 0.875rem;
-    }
+.issue-description {
+    color: #475569;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
 
-    .stat {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: #64748b;
-    }
+.issue-complition {
+    color: #475569;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
 
-    .status-badge {
-        padding: 0.25rem 0.75rem;
-        border-radius: 20px;
-        font-size: 0.75rem;
-        font-weight: 500;
-        margin-left: auto;
-    }
+.issue-stats {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.8rem;
+    margin-top: auto;
+}
 
-    .status-progress {
-        background: linear-gradient(135deg, #f59e0b, #d97706);
-        color: white;
-    }
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #64748b;
+}
 
-    .status-reported {
-        background: linear-gradient(135deg, #ef4444, #dc2626);
-        color: white;
-    }
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    background-color: #e4ffe4;
+    color: green;
+    border: 1px solid rgb(6, 95, 6);
+    position: relative;
+    top: -120px;
+    left: 140px;
+    font-weight: 500;
+    margin-left: auto;
+    white-space: nowrap;
+}
 
-    .category-tag {
-        background: linear-gradient(135deg, #4f46e5, #7c3aed);
-        color: white;
-        padding: 0.25rem 0.75rem;
-        border-radius: 20px;
-        font-size: 1rem;
-        font-weight: 500;
-    }
+.status-progress {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+}
 
-    .infrastructure-tag {
-        background: linear-gradient(135deg, #10b981, #059669);
-    }
+.status-reported {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+}
+
+.category-tag {
+    background: #f7f3ff;
+    color: rgb(87, 38, 250);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    border: 2px solid rgb(79, 34, 226);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.infrastructure-tag {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.timestamp {
+    color: #64748b;
+    font-size: 0.75rem;
+}
 
     .sidebar {
 
@@ -678,6 +737,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         font-size: 0.75rem;
         font-weight: 500;
     }
+    .button-report{
+        padding: 1rem 1rem 2rem 1rem;
+    }
 
     .report-btn {
         width: 100%;
@@ -699,7 +761,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     .timestamp {
-        color: #94a3b8;
+        color: #4444e8;
         font-size: 0.8rem;
     }
 
@@ -1631,7 +1693,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         gap: 0.5rem;
         user-select: none;
         border: 2px solid #e2e8f0;
-        background: linear-gradient(145deg, #ffffff, #f1f5f9);
+        background-color: rgb(240, 255, 240);
+        color: rgb(16, 118, 16);
+        border: 2px solid #059669;
     }
 
     .vote-btn:hover {
@@ -1736,7 +1800,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     #trustMember {
         position: absolute;
-        right: 22px;
+        right: 150px;
         padding: 4px 10px;
         background: #09a709;
         color: white;
@@ -1819,7 +1883,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         gap: 0.5rem;
         user-select: none;
         border: 2px solid #e2e8f0;
-        background: linear-gradient(145deg, #ffffff, #f1f5f9);
+        background-color: rgb(255, 240, 240);
+        color: rgb(171, 5, 5);
+        border: 2px solid #a40606;
     }
 
     .unvote-btn:hover {
@@ -2657,6 +2723,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         font-weight: 500;
         border-radius: 6px;
     }
+    .second-main{
+        display: flex;
+    }
+    .second-main .content{
+        width: 70%;
+    }
+    .tabs{
+        padding: 1rem;
+        padding-bottom: 0;
+        border-bottom: 1px solid rgb(222, 222, 222);
+
+    }
+    .tabs button{
+        background-color: transparent;
+        border: none;
+        font-size: 18px;
+        font-weight: 600;
+        padding-bottom: 0.8rem;
+        color: #475569;
+    }
+    .tabs .active{
+        font-weight: 600;
+        color: #4444e8;
+        border-bottom: 3px solid #4444e8;
+    }
+    .tabs{
+        display: flex;
+        gap: 20px;
+    }
+    .issue-baap{
+        padding: 1rem;
+    }
     </style>
 </head>
 
@@ -2850,70 +2948,97 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 
-    <nav class="navbar">
-        <div class="navbar-brand"> 📢आवाज</div>
-        <ul class="navbar-nav">
-            <li><a href="index.php" class="nav-link active">🏠 Home</a></li>
-            <li><a href="map.php" class="nav-link">📈 Map</a></li>
-            <li><a href="notice.php" class="nav-link">🔔 Notices</a></li>
-            <li><a href="admin.php" class="nav-link">⚙️ Admin</a></li>
-            <li><a href="campaign.php" class="nav-link">📢 Campaigns</a></li>
-            <li><div class="user">
-            <?php echo $_SESSION['user_name']; ?>
-        </div></li>
-            <li class="notification-item" style="display: none;">
-                <div class="notification-wrapper">
-                    <button class="notification-btn" id="notificationToggle">
-                        🔔
-                        <span class="badge">3</span>
-                    </button>
-                    <div class="notification-popup" id="notificationPopup">
+   <nav class="navbar">
+    <div class="navbar-brand">
+        <span class="brand-icon"></span>
+        आवाज
+    </div>
+    <ul class="navbar-nav">
+        <li><a href="index.php" class="nav-link active">
+           <i class="fa-regular fa-house"></i>
+            Home
+        </a></li>
+        <li><a href="map.php" class="nav-link">
+            <i class="fa-regular fa-map"></i>
+            Map
+        </a></li>
+        <li><a href="notice.php" class="nav-link">
+            <i class="fa-regular fa-bell"></i>
+            Notices
+        </a></li>
+        <li><a href="admin/admin.php" class="nav-link">
+          <i class="fa-brands fa-vaadin"></i>
+            Admin
+        </a></li>
+        <li><a href="campaign.php" class="nav-link">
+            <i class="fa-solid fa-tower-broadcast"></i>
+            Campaigns
+        </a></li>
+        <li class="notification-item">
+            <div class="notification-wrapper">
+                <button class="notification-btn" id="notificationToggle">
+                    <i class="fa-solid fa-bell" style="color: #4444e8;"></i>
+                    <span class="badge">3</span>
+                </button>
+                <div class="notification-popup" id="notificationPopup">
+                    <div class="popup-header">
                         <h4>Notifications</h4>
-                        <ul>
-                            <?php
-        displayNotification();
-       ?>
-                        </ul>
+                        <button class="close-btn">&times;</button>
                     </div>
-                </div>
-            </li>
-        </ul>
-    </nav>
-
-    <div class="main-container"
-        style="display: grid; grid-template-columns: 3fr 1fr; gap: 1.5rem; padding: 1.5rem; max-width: 1500px; margin: 0 auto;">
-
-        <main class="content">
-
-            <div class="search-container" style="margin-bottom: 1.5rem;">
-                <div class="search-box" style="position: relative;">
-                    <i class="fas fa-search search-icon"
-                        style="position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); color: #64748b;"></i>
-                    <input type="text" class="search-input"
-                        placeholder="Search issues by title, location, or category..."
-                        style="width: 100%; padding: 0.75rem 1rem 0.75rem 2.5rem; border: 1px solid #e2e8f0; border-radius: 4px;">
+                    <ul class="notification-list">
+                        <?php
+                        displayNotification();
+                        ?>
+                    </ul>
                 </div>
             </div>
+        </li>
+    </ul>
+    <ul></ul>
+    <p class="user-item usersec" style="list-decoration: none;"><?php 
+        $sqlP = "SELECT * FROM users WHERE id = ".$_SESSION['user_id'];
+             $resP = mysqli_query($conn, $sqlP);
+             $fetchP = mysqli_fetch_assoc($resP);
+            echo '<a href="profile.php?id='.$_SESSION['user_id'].'" class="user-link">';
+        ?>
+               <i class="fa-regular fa-user"></i>
+                <?php echo $_SESSION['user_name']; ?>
+            </a>
+</p>
+</nav>
+
+    <div class="main-container">
+
+
+        <div class="search-container" style="margin-bottom: 1.5rem;">
+                <div class="search-box" style="position: relative;">
+                    <i class="fas fa-search search-icon"
+                    style="color: #64748b;"></i>
+                    <input type="text" class="search-input"
+                        placeholder="Search issues by title, location, or category..."
+                        style="width: 100%; border: 1px solid #e2e8f0; border-radius: 4px;">
+                </div>
+            </div>
+            <div class="second-main">
+        <main class="content">
             <div class="section-header" style="margin-bottom: 1.5rem;">
                 <div>
-                    <h1 class="section-title" style="font-size: 1.8rem; margin: 0; color: #1e293b;">Community Issues
+                    <h1 class="section-title" style="font-size: 1.8rem; margin: 0; color: #4444e8;">Community Issues
                     </h1>
                     <p class="section-subtitle" style="margin: 0.25rem 0 0 0; color: #64748b;">सामुदायिक समस्याहरू</p>
                 </div>
             </div>
 
 
-            <div class="tabs"
-                style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0;">
-                <button class="tab-btn <?php echo $tab === 'all' ? 'active' : ''; ?>" onclick="changeTab('all')"
-                    style="padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 500; color: <?php echo $tab === 'all' ? '#4f46e5' : '#64748b'; ?>; background: <?php echo $tab === 'all' ? 'linear-gradient(145deg, #e0e7ff, #c7d2fe)' : 'transparent'; ?>; border: none; border-radius: 8px 8px 0 0; cursor: pointer; transition: all 0.3s ease;">All
-                    Posts</button>
+            <div class="tabs">
+                <button class="tab-btn active <?php echo $tab === 'all' ? 'active' : ''; ?>" onclick="changeTab('all')">All
+                    Posts </button>
                 <button class="tab-btn <?php echo $tab === 'completed' ? 'active' : ''; ?>"
                     onclick="changeTab('completed')"
-                    style="padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 500; color: <?php echo $tab === 'completed' ? '#4f46e5' : '#64748b'; ?>; background: <?php echo $tab === 'completed' ? 'linear-gradient(145deg, #e0e7ff, #c7d2fe)' : 'transparent'; ?>; border: none; border-radius: 8px 8px 0 0; cursor: pointer; transition: all 0.3s ease;">Completed
-                    Posts</button>
+                    >Completed
+                    Posts </button>
                 <button class="tab-btn <?php echo $tab === 'working' ? 'active' : ''; ?>" onclick="changeTab('working')"
-                    style="padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 500; color: <?php echo $tab === 'working' ? '#4f46e5' : '#64748b'; ?>; background: <?php echo $tab === 'working' ? 'linear-gradient(145deg, #e0e7ff, #c7d2fe)' : 'transparent'; ?>; border: none; border-radius: 8px 8px 0 0; cursor: pointer; transition: all 0.3s ease;">Working
+                    >Working
                     Posts</button>
             </div>
             <?php
@@ -2996,6 +3121,7 @@ $sidebar_result = mysqli_stmt_get_result($sidebar_stmt);
 
 <?php if (mysqli_num_rows($result) > 0): ?>
     <?php while ($row = mysqli_fetch_assoc($result)): ?>
+    <div class="issue-baap">
         <div class="issue-card" data-latitude="<?php echo htmlspecialchars($row['latitude']); ?>"
              data-longitude="<?php echo htmlspecialchars($row['longitude']); ?>"
              style="background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); margin-bottom: 1.5rem; overflow: hidden;">
@@ -3042,13 +3168,13 @@ $sidebar_result = mysqli_stmt_get_result($sidebar_stmt);
                             style="max-width:100%; max-height:100%; object-fit:cover;">
                     </div>
                     <div class="issue-content" style="flex: 1; padding: 1rem;">
-                        <h3 class="issue-title" style="margin: 0 0 0.5rem 0; font-size: 1.2rem; color: #1e293b;">
+                        <h3 class="issue-title" style="margin: 0 0 0 0; font-size: 1.2rem; color: #1e293b;">
                             <?php echo htmlspecialchars($row['title']); ?></h3>
                         <div class="issue-meta"
-                            style="display: flex; gap: 1rem; margin-bottom: 0.5rem; color: #64748b; font-size: 0.9rem;">
+                            style="display: flex; gap: 1rem; margin-bottom: ; color: #64748b; font-size: 0.9rem;">
                             <span><i class="fas fa-map-marker-alt" style="margin-right: 0.25rem;"></i>
                                 <?php echo htmlspecialchars($row['location_name']); ?></span>
-                            <span><i class="fas fa-user" style="margin-right: 0.25rem;"></i> Reported by
+                            <span><i class="fas fa-user" style="margin-right: 0;"></i> Reported by
                                 <?php echo htmlspecialchars($row['first_name'] . ' ' . $row['last_name']); ?></span>
                         </div>
                         <p class="issue-description" style="color: #475569; margin: 0 0 0.5rem 0;">
@@ -3074,7 +3200,7 @@ $sidebar_result = mysqli_stmt_get_result($sidebar_stmt);
                                 style="padding: 0.25rem 0.75rem; border-radius: 9999px;">
                                 <?php echo ucfirst($row['status']); ?>
                             </div>
-                            <div class="timestamp" style="color: #64748b;"><?php echo ($row['created_at']); ?></div>
+                            <div class="timestamp" style="color: #4444e8; font-weight: bold;"><?php echo ($row['created_at']); ?></div>
                             <?php if ($_SESSION['user_id'] == $row['user_id']): ?>
                             <div class="stat">
                                 <a href="delete.php?del=post&id=<?php echo $row['id']; ?>&userid=<?php echo $row['user_id']; ?>"
@@ -3087,6 +3213,7 @@ $sidebar_result = mysqli_stmt_get_result($sidebar_stmt);
                     </div>
                 </div>
             </div>
+            </div>
             <?php endwhile; ?>
             <?php else: ?>
             <h2 style="text-align: center;">No issues reported yet.</h2>
@@ -3094,27 +3221,28 @@ $sidebar_result = mysqli_stmt_get_result($sidebar_stmt);
         </main>
         <aside class="sidebar">
             <div class="sidebar-section"
-                style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
-                <h3 class="sidebar-title" style="font-size: 1.2rem; margin: 0 0 1rem 0; color: #1e293b;">
+                style="background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                <h3 class="sidebar-title" style="font-size: 1.2rem; padding: 1.2rem; margin: 0 0 1rem 0; color: #4444e8; border-bottom: 1px solid silver;">
                     <i class="fas fa-bolt" style="margin-right: 0.5rem;"></i>
                     Quick Actions
                 </h3>
+                <div class="button-report">
                 <button class="report-btn"
                     style="width: 100%; padding: 0.75rem; background: #6366f1; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem;">
                     <i class="fas fa-plus" style="margin-right: 0.5rem;"></i> Report an Issue
-                </button>
+                </button></div>
             </div>
             <div class="sidebar-section"
-                style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
-                <h3 class="sidebar-title" style="font-size: 1.2rem; margin: 0 0 1rem 0; color: #1e293b;">
+                style="background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                <h3 class="sidebar-title" style="font-size: 1.2rem; padding: 1.3rem; border-bottom: 1px solid silver; margin: 0 0 1rem 0; color: #4444e8;">
                     <i class="fas fa-bell" style="margin-right: 0.5rem;"></i>
                     Nearby Issue Notifications
                 </h3>
-                <ul class="nearby-issues-list" style="list-style: none; padding: 0;">
+                <ul class="nearby-issues-list" style="list-style: none; padding: 0; padding: 2rem;">
                     <?php if (mysqli_num_rows($sidebar_result) > 0): ?>
                     <?php while ($sidebar_row = mysqli_fetch_assoc($sidebar_result)): ?>
                     <li class="nearby-issue-item"
-                        style="padding: 0.75rem; margin-bottom: 0.5rem; background: linear-gradient(145deg, #ffffff, #f1f5f9); border-radius: 8px; transition: all 0.3s ease; display: flex; justify-content: space-between; align-items: center;">
+                        style="padding: 0.75rem; margin-bottom: 0.5rem; background: linear-gradient(145deg, #ffffff, #d6eaff); border: 2px solid #4444e8; border-radius: 8px; transition: all 0.3s ease; display: flex; justify-content: space-between; align-items: center;">
                         <div style="width: 80%"><?php
                             
                             
@@ -3146,6 +3274,7 @@ $sidebar_result = mysqli_stmt_get_result($sidebar_stmt);
                 </ul>
             </div>
         </aside>
+    </div>
     </div>
 
     <div id="reportModal" class="modal">
@@ -3292,566 +3421,568 @@ $sidebar_result = mysqli_stmt_get_result($sidebar_stmt);
 <a href="logout.php"  class="logout-btn" title="Logout">
   <i class="fas fa-sign-out-alt"></i>
 </a>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA04g5uPfBSXraUtweYOmYfrTwI9dQK7S8&callback=initMap">
-    </script>
-    <script>
-    let postId = 0;
-    let map;
-    let marker;
-    let currentPostData = null;
+<script src="https://kit.fontawesome.com/905111e111.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA04g5uPfBSXraUtweYOmYfrTwI9dQK7S8&callback=initMap">
+</script>
+<script>
+let postId = 0;
+let map;
+let marker;
+let currentPostData = null;
+const basePath = '/ncc_hacks/'; // Consistent path for API calls
 
-    function changeTab(tab) {
-        const url = new URL(window.location);
-        url.searchParams.set('tab', tab);
-        window.location = url.toString();
-    }
+// Utility Functions
+function showToast(message, type = 'info') {
+    // Remove existing toasts
+    document.querySelectorAll('.toast').forEach(toast => toast.remove());
+    
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    toast.innerHTML = `
+        <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'times-circle' : 'info-circle'}" style="margin-right: 0.5rem;"></i>
+        <span>${message}</span>
+    `;
+    toast.style.cssText = `
+        position: fixed; top: 20px; right: 20px; padding: 1rem 1.5rem; border-radius: 6px; color: white;
+        font-weight: 500; z-index: 10000; display: flex; align-items: center; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        animation: slideIn 0.3s ease-out; max-width: 400px;
+        background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
+    `;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 4000);
+}
 
-    function openModal() {
-        document.getElementById('reportModal').classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
+// Tab Switching
+function changeTab(tab) {
+    const url = new URL(window.location);
+    url.searchParams.set('tab', tab);
+    window.location = url.toString();
+}
 
-    function closeModal() {
-        document.getElementById('reportModal').classList.remove('active');
-        document.body.style.overflow = 'auto';
-        document.getElementById('issueForm').reset();
-        document.querySelector('.photo-upload').innerHTML = `
+// Modal Functions
+function openModal() {
+    document.getElementById('reportModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    document.getElementById('reportModal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+    document.getElementById('issueForm').reset();
+    const photoUpload = document.querySelector('.photo-upload');
+    photoUpload.innerHTML = `
         <div class="photo-upload-icon" style="margin-bottom: 0.5rem;">
             <i class="fas fa-camera" style="font-size: 2rem; color: #6366f1;"></i>
         </div>
         <div class="photo-upload-text" style="color: #1e293b;">Drag and drop a photo here, or click to select</div>
         <div class="photo-upload-subtext" style="color: #64748b; font-size: 0.9rem; margin-top: 0.25rem;">PNG, JPG up to 10MB</div>
     `;
-    }
+}
 
-    function initMap() {
-        const defaultLocation = {
-            lat: 27.7172,
-            lng: 85.3240
+// Map Initialization
+function initMap() {
+    const defaultLocation = { lat: 27.7172, lng: 85.3240 };
+    map = new google.maps.Map(document.getElementById("locationMap"), {
+        zoom: 13,
+        center: defaultLocation,
+        mapTypeControl: true,
+        streetViewControl: true,
+        fullscreenControl: true,
+        zoomControl: true
+    });
+    
+    map.addListener("click", (event) => {
+        setMarker(event.latLng);
+    });
+    
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const userLocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                map.setCenter(userLocation);
+                setMarker(new google.maps.LatLng(userLocation.lat, userLocation.lng));
+            },
+            () => console.error("Geolocation failed, using default location")
+        );
+    }
+}
+
+function setMarker(location) {
+    if (marker) marker.setMap(null);
+    marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        animation: google.maps.Animation.DROP
+    });
+    const lat = location.lat();
+    const lng = location.lng();
+    document.getElementById('latValue').textContent = lat.toFixed(6);
+    document.getElementById('lngValue').textContent = lng.toFixed(6);
+    document.getElementById('latitude').value = lat;
+    document.getElementById('longitude').value = lng;
+}
+
+// Custom Map for Post Location
+function myCustomMap(lat, lng) {
+    const location = { lat: parseFloat(lat), lng: parseFloat(lng) };
+    const mapElement = document.getElementById("mapShower");
+    mapElement.innerHTML = ''; // Clear placeholder
+    const map = new google.maps.Map(mapElement, {
+        zoom: 17,
+        center: location,
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: false,
+        zoomControl: true
+    });
+    new google.maps.Marker({
+        position: location,
+        map: map,
+        title: "Issue Location"
+    });
+}
+
+// Extract Post Data from Card
+function extractPostData(cardElement) {
+    try {
+        const title = cardElement.querySelector('.issue-title')?.textContent || 'No Title';
+        const description = cardElement.querySelector('.issue-description')?.textContent || 'No Description';
+        const completionMessage = cardElement.querySelector('.issue-complition')?.textContent || 'Not completed';
+        const category = cardElement.querySelector('.category-tag')?.textContent?.trim() || 'Other';
+        const location = cardElement.querySelector('.issue-meta span:first-child')?.textContent?.replace(/.*\s/, '') || 'Unknown Location';
+        const reportedBy = cardElement.querySelector('.issue-meta span:nth-child(2)')?.textContent?.replace('Reported by ', '') || 'Unknown';
+        const timestamp = cardElement.querySelector('.timestamp')?.textContent || 'Unknown';
+        const status = cardElement.querySelector('.status-badge')?.textContent?.trim() || 'Unknown';
+        const votesCount = cardElement.querySelector('.vote-count')?.textContent || '0';
+        const unvotesCount = cardElement.querySelector('.unvote-count')?.textContent || '0';
+        const isVoted = cardElement.querySelector('.vote-btn')?.classList.contains('voted') || false;
+        const isUnvoted = cardElement.querySelector('.unvote-btn')?.classList.contains('unvoted') || false;
+        postId = cardElement.querySelector('.vote-btn')?.dataset?.postId || '';
+        const imageSrc = cardElement.querySelector('.issue-image img')?.src || '';
+        const lat = cardElement.dataset.latitude || '27.7172';
+        const lng = cardElement.dataset.longitude || '85.3240';
+        return {
+            id: postId,
+            title,
+            description,
+            completion_message: completionMessage,
+            category,
+            location,
+            reportedBy,
+            timestamp,
+            status,
+            votesCount: parseInt(votesCount),
+            unvotesCount: parseInt(unvotesCount),
+            isVoted,
+            isUnvoted,
+            imageSrc,
+            priority: 'Medium',
+            coordinates: `${lat}, ${lng}`,
+            latitude: lat,
+            longitude: lng
         };
-        map = new google.maps.Map(document.getElementById("locationMap"), {
-            zoom: 13,
-            center: defaultLocation,
-            mapTypeControl: true,
-            streetViewControl: true,
-            fullscreenControl: true,
-            zoomControl: true
-        });
-
-        map.addListener("click", (event) => {
-            setMarker(event.latLng);
-        });
-
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const userLocation = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-                    map.setCenter(userLocation);
-                    setMarker(new google.maps.LatLng(userLocation.lat, userLocation.lng));
-                },
-                () => console.error("Geolocation failed, using default location")
-            );
-        }
+    } catch (error) {
+        console.error('Error extracting post data:', error);
+        return null;
     }
+}
 
-    function setMarker(location) {
-        if (marker) marker.setMap(null);
-        marker = new google.maps.Marker({
-            position: location,
-            map: map,
-            animation: google.maps.Animation.DROP
-        });
-        const lat = location.lat();
-        const lng = location.lng();
-        document.getElementById('latValue').textContent = lat.toFixed(6);
-        document.getElementById('lngValue').textContent = lng.toFixed(6);
-        document.getElementById('latitude').value = lat;
-        document.getElementById('longitude').value = lng;
-    }
+// Post Popup Functions
+function openPostPopup(postData) {
+    currentPostData = postData;
+    document.getElementById('popupPostImage').src = postData.imageSrc || 'https://via.placeholder.com/800x400?text=No+Image';
+    document.getElementById('popupPostTitle').textContent = postData.title;
+    document.getElementById('popupPostDescription').textContent = postData.description;
+    document.getElementById('popupPostComplition').textContent = postData.completion_message;
+    document.getElementById('popupPostCategory').innerHTML = `<i class="fas fa-tag" style="margin-right: 0.5rem;"></i><span>${postData.category}</span>`;
+    document.getElementById('popupImageLocation').innerHTML = `<i class="fas fa-map-marker-alt" style="margin-right: 0.5rem;"></i>${postData.location}`;
+    document.getElementById('popupReportedBy').textContent = postData.reportedBy;
+    document.getElementById('popupDateReported').textContent = new Date(postData.timestamp).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    document.getElementById('popupPriority').textContent = postData.priority;
+    document.getElementById('popupVoteCount').textContent = postData.votesCount;
+    document.getElementById('popupLastUpdated').textContent = postData.timestamp;
+    document.getElementById('popupCoordinates').textContent = postData.coordinates;
+    document.getElementById('popupUnvoteCount').textContent = postData.unvotesCount;
+    
+    const statusBadge = document.getElementById('popupPostStatus');
+    statusBadge.textContent = postData.status;
+    statusBadge.className = `post-status-badge status-${postData.status.toLowerCase()}`;
+    
+    const popupVoteBtn = document.getElementById('popupVoteBtn');
+    const voteActionBtn = document.getElementById('popupVoteActionBtn');
+    const popupUnvoteBtn = document.getElementById('popupUnvoteBtn');
+    const unvoteActionBtn = document.getElementById('popupUnvoteActionBtn');
+    
+    popupVoteBtn.classList.toggle('voted', postData.isVoted);
+    voteActionBtn.classList.toggle('voted', postData.isVoted);
+    popupUnvoteBtn.classList.toggle('unvoted', postData.isUnvoted);
+    unvoteActionBtn.classList.toggle('unvoted', postData.isUnvoted);
+    
+    document.getElementById('postPopup').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Initialize map after a short delay to ensure DOM is ready
+    setTimeout(() => myCustomMap(postData.latitude, postData.longitude), 100);
+}
 
-    function myCustomMap(lat, lng) {
-        const location = {
-            lat: parseFloat(lat),
-            lng: parseFloat(lng)
-        };
-        const map = new google.maps.Map(document.getElementById("mapShower"), {
-            zoom: 17,
-            center: location,
-            mapTypeControl: false,
-            streetViewControl: false,
-            fullscreenControl: false,
-            zoomControl: true
-        });
-        new google.maps.Marker({
-            position: location,
-            map: map,
-            title: "Issue Location"
-        });
-    }
-
-    function showToast(message, type = 'info') {
-        document.querySelectorAll('.toast').forEach(toast => toast.remove());
-        const toast = document.createElement('div');
-        toast.className = `toast toast-${type}`;
-        toast.innerHTML = `
-        <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'times-circle' : 'info-circle'}" style="margin-right: 0.5rem;"></i>
-        <span>${message}</span>
-    `;
-        toast.style.cssText = `
-        position: fixed; top: 20px; right: 20px; padding: 1rem 1.5rem; border-radius: 6px; color: white;
-        font-weight: 500; z-index: 10000; display: flex; align-items: center; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        animation: slideIn 0.3s ease-out; max-width: 400px;
-        background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
-    `;
-        document.body.appendChild(toast);
-        setTimeout(() => toast.remove(), 4000);
-    }
-
-    function extractPostData(cardElement) {
-        try {
-            const title = cardElement.querySelector('.issue-title')?.textContent || 'No Title';
-            const description = cardElement.querySelector('.issue-description')?.textContent || 'No Description';
-            const complition_message = cardElement.querySelector('.issue-complition')?.textContent || 'Not completed';
-            const category = cardElement.querySelector('.category-tag')?.textContent?.trim() || 'Other';
-            const location = cardElement.querySelector('.issue-meta span:first-child')?.textContent?.replace(/.*\s/,
-                '') || 'Unknown Location';
-            const reportedBy = cardElement.querySelector('.issue-meta span:nth-child(2)')?.textContent?.replace(
-                'Reported by ', '') || 'Unknown';
-            const timestamp = cardElement.querySelector('.timestamp')?.textContent || 'Unknown';
-            const status = cardElement.querySelector('.status-badge')?.textContent?.trim() || 'Unknown';
-            const votesCount = cardElement.querySelector('.vote-count')?.textContent || '0';
-            const unvotesCount = cardElement.querySelector('.unvote-count')?.textContent || '0';
-            const isVoted = cardElement.querySelector('.vote-btn')?.classList.contains('voted') || false;
-            const isUnvoted = cardElement.querySelector('.unvote-btn')?.classList.contains('unvoted') || false;
-            postId = cardElement.querySelector('.vote-btn')?.dataset?.postId || '';
-            const imageSrc = cardElement.querySelector('.issue-image img')?.src || '';
-            const lat = cardElement.dataset.latitude || '27.7172';
-            const lng = cardElement.dataset.longitude || '85.3240';
-
-            return {
-                id: postId,
-                title,
-                description,
-                complition_message,
-                category,
-                location,
-                reportedBy,
-                timestamp,
-                status,
-                votesCount: parseInt(votesCount),
-                unvotesCount: parseInt(unvotesCount),
-                isVoted,
-                isUnvoted,
-                imageSrc,
-                priority: 'Medium',
-                coordinates: `${lat}, ${lng}`,
-                latitude: lat,
-                longitude: lng
-            };
-        } catch (error) {
-            console.error('Error extracting post data:', error);
-            return null;
-        }
-    }
-
-    function openPostPopup(postData) {
-        currentPostData = postData;
-        document.getElementById('popupPostImage').src = postData.imageSrc ||
-            'https://via.placeholder.com/800x400?text=No+Image';
-        document.getElementById('popupPostTitle').textContent = postData.title;
-        document.getElementById('popupPostDescription').textContent = postData.description;
-        document.getElementById('popupPostComplition').textContent = postData.complition_message;
-        document.getElementById('popupPostCategory').innerHTML =
-            `<i class="fas fa-tag" style="margin-right: 0.5rem;"></i><span>${postData.category}</span>`;
-        document.getElementById('popupImageLocation').innerHTML =
-            `<i class="fas fa-map-marker-alt" style="margin-right: 0.5rem;"></i>${postData.location}`;
-        document.getElementById('popupReportedBy').textContent = postData.reportedBy;
-        document.getElementById('popupDateReported').textContent = new Date(postData.timestamp).toLocaleDateString(
-            'en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-        document.getElementById('popupPriority').textContent = postData.priority;
-        document.getElementById('popupVoteCount').textContent = postData.votesCount;
-        document.getElementById('popupLastUpdated').textContent = postData.timestamp;
-        document.getElementById('popupCoordinates').textContent = postData.coordinates;
-        document.getElementById('popupUnvoteCount').textContent = postData.unvotesCount;
-
-        const statusBadge = document.getElementById('popupPostStatus');
-        statusBadge.textContent = postData.status;
-        statusBadge.className = `post-status-badge status-${postData.status.toLowerCase()}`;
-
-        const popupVoteBtn = document.getElementById('popupVoteBtn');
-        const voteActionBtn = document.getElementById('popupVoteActionBtn');
-        const popupUnvoteBtn = document.getElementById('popupUnvoteBtn');
-        const unvoteActionBtn = document.getElementById('popupUnvoteActionBtn');
-
-        popupVoteBtn.classList.toggle('voted', postData.isVoted);
-        voteActionBtn.classList.toggle('voted', postData.isVoted);
-        popupUnvoteBtn.classList.toggle('unvoted', postData.isUnvoted);
-        unvoteActionBtn.classList.toggle('unvoted', postData.isUnvoted);
-
-        document.getElementById('postPopup').classList.add('active');
-        document.body.style.overflow = 'hidden';
-        myCustomMap(postData.latitude, postData.longitude);
-    }
-
-    function closePostPopup() {
-        document.getElementById('postPopup').classList.remove('active');
-        document.body.style.overflow = 'auto';
-        currentPostData = null;
-        document.getElementById('mapShower').innerHTML = `
+function closePostPopup() {
+    document.getElementById('postPopup').classList.remove('active');
+    document.body.style.overflow = 'auto';
+    currentPostData = null;
+    const mapShower = document.getElementById('mapShower');
+    mapShower.innerHTML = `
         <div style="text-align: center;">
             <i class="fas fa-map" style="font-size: 2rem; margin-bottom: 0.5rem; color: #6366f1;"></i>
             <div>Click to view location on map</div>
             <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.25rem;">
-                Coordinates: <span id="popupCoordinates">${currentPostData ? currentPostData.coordinates : '34.0, 32.0'}</span>
+                Coordinates: <span id="popupCoordinates">34.0, 32.0</span>
             </div>
         </div>
     `;
+}
+
+// Voting/Unvoting Core Logic
+function processVoteAction(buttonEl, action, postId) {
+    if (buttonEl.classList.contains('loading')) return;
+    
+    const countSpan = buttonEl.querySelector(`.${action}-count`);
+    if (!countSpan) {
+        console.error(`Count span for ${action} not found for post ID: ${postId}`);
+        showToast('Error: Unable to update count. Please try again.', 'error');
+        return;
     }
-
-    function handleVoteAction(buttonEl, action) {
-        if (buttonEl.classList.contains('loading')) return;
-        const postId = buttonEl.dataset.postId;
-        buttonEl.classList.add('loading');
-        buttonEl.style.opacity = '0.6';
-        buttonEl.style.cursor = 'not-allowed';
-
-        const basePath = '/ncc_hacks/';
-        fetch(`${basePath}check_distance.php`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `id_post=${postId}`
-            })
-            .then(response => response.text())
-            .then(resFcd => {
-                if (resFcd.trim() === "1") {
-                    showToast("You are out of the region! You must be within 1 km radius to vote on this issue.",
-                        "error");
-                    buttonEl.classList.remove('loading');
-                    buttonEl.style.opacity = '1';
-                    buttonEl.style.cursor = 'pointer';
-                    return;
-                }
-                if (resFcd.trim() === "0") {
-                    processVoteAction(buttonEl, action, postId);
-                } else {
-                console.log(resFcd)
-                    showToast('Unable to verify your location. Please try again.', 'error');
-                    buttonEl.classList.remove('loading');
-                    buttonEl.style.opacity = '1';
-                    buttonEl.style.cursor = 'pointer';
-                }
-            })
-            .catch(error => {
-                console.error('Fetch error in check_distance:', error);
-                showToast('Failed to check your location. Please check your internet connection.', 'error');
-                buttonEl.classList.remove('loading');
-                buttonEl.style.opacity = '1';
-                buttonEl.style.cursor = 'pointer';
-            });
+    
+    const isAlreadyActioned = buttonEl.classList.contains(action === 'vote' ? 'voted' : 'unvoted');
+    if (isAlreadyActioned && action === 'vote' && buttonEl.classList.contains('voted')) {
+        showToast('You have already voted for this post.', 'error');
+        return;
     }
-
-    function processVoteAction(buttonEl, action, postId) {
-        if (buttonEl.classList.contains('loading')) return;
-
-        const countSpan = buttonEl.querySelector(`.${action}-count`);
-        if (!countSpan) {
-            console.error(`Count span for ${action} not found for post ID: ${postId}`);
-            showToast('Error: Unable to update count. Please try again.', 'error');
-            return;
-        }
-
-        const isAlreadyActioned = buttonEl.classList.contains(action === 'vote' ? 'voted' : 'unvoted');
-        if (isAlreadyActioned && action === 'vote' && buttonEl.classList.contains('voted')) {
-            showToast('You have already voted for this post.', 'error');
-            return;
-        }
-        if (isAlreadyActioned && action === 'unvote' && buttonEl.classList.contains('unvoted')) {
-            showToast('You have already unvoted this post.', 'error');
-            return;
-        }
-
-        buttonEl.classList.add('loading');
-        buttonEl.style.opacity = '0.6';
-        buttonEl.style.cursor = 'not-allowed';
-
-        const currentCount = parseInt(countSpan.textContent) || 0;
-        const newCount = isAlreadyActioned ? currentCount - 1 : currentCount + 1;
-        buttonEl.classList.toggle(action === 'vote' ? 'voted' : 'unvoted', !isAlreadyActioned);
-        updateButtonStyle(buttonEl, !isAlreadyActioned, action);
-        countSpan.textContent = Math.max(0, newCount);
-
-        const oppositeButton = buttonEl.parentElement.querySelector(action === 'vote' ? '.unvote-btn' : '.vote-btn');
-        if (oppositeButton && oppositeButton.classList.contains(action === 'vote' ? 'unvoted' : 'voted')) {
-            oppositeButton.classList.remove(action === 'vote' ? 'unvoted' : 'voted');
-            updateButtonStyle(oppositeButton, false, action === 'vote' ? 'unvote' : 'vote');
-            const oppositeCountSpan = oppositeButton.querySelector(action === 'vote' ? '.unvote-count' : '.vote-count');
-            if (oppositeCountSpan) {
-                oppositeCountSpan.textContent = Math.max(0, parseInt(oppositeCountSpan.textContent) - 1 || 0);
-            }
-        }
-
-        const basePath = '/ncc_hacks/';
-        fetch(`${basePath}${action === 'vote' ? 'like_handler.php' : 'unlike_handler.php'}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `post_id=${postId}&action=${isAlreadyActioned ? 'remove' : 'add'}`
-            })
-            .then(response => {
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    countSpan.textContent = action === 'vote' ? data.likes_count : data.unlikes_count;
-                    updateButtonState(buttonEl, data.action === (action === 'vote' ? 'liked' : 'unliked'), action);
-                    if (oppositeButton) {
-                        const oppositeCountSpan = oppositeButton.querySelector(action === 'vote' ? '.unvote-count' :
-                            '.vote-count');
-                        if (oppositeCountSpan) {
-                            oppositeCountSpan.textContent = action === 'vote' ? data.unlikes_count : data
-                                .likes_count;
-                        }
-                    }
-                    updateMainCardAction(postId, action, data.action === (action === 'vote' ? 'liked' : 'unliked'),
-                        action === 'vote' ? data.likes_count : data.unlikes_count);
-                    showToast(data.action === (action === 'vote' ? 'liked' : 'unliked') ?
-                        `${action.charAt(0).toUpperCase() + action.slice(1)} added successfully!` :
-                        `${action.charAt(0).toUpperCase() + action.slice(1)} removed successfully!`, 'success');
-                } else {
-                    countSpan.textContent = currentCount;
-                    buttonEl.classList.toggle(action === 'vote' ? 'voted' : 'unvoted');
-                    updateButtonStyle(buttonEl, isAlreadyActioned, action);
-                    showToast(data.message || 'Error occurred while processing your request', 'error');
-                }
-            })
-            .catch(error => {
-                console.error('Fetch error:', error);
-                countSpan.textContent = currentCount;
-                buttonEl.classList.toggle(action === 'vote' ? 'voted' : 'unvoted');
-                updateButtonStyle(buttonEl, isAlreadyActioned, action);
-                showToast(`Network error: ${error.message}`, 'error');
-            })
-            .finally(() => {
-                buttonEl.classList.remove('loading');
-                buttonEl.style.opacity = '1';
-                buttonEl.style.cursor = 'pointer';
-            });
+    if (isAlreadyActioned && action === 'unvote' && buttonEl.classList.contains('unvoted')) {
+        showToast('You have already unvoted this post.', 'error');
+        return;
     }
-
-    function processPopupAction(action, popupBtn, actionBtn, countElement) {
-        if (!countElement || !currentPostData) {
-            console.error(`Count element or post data for ${action} not found`);
-            showToast('Error: Unable to update count. Please try again.', 'error');
-            return;
+    
+    buttonEl.classList.add('loading');
+    buttonEl.style.opacity = '0.6';
+    buttonEl.style.cursor = 'not-allowed';
+    
+    const currentCount = parseInt(countSpan.textContent) || 0;
+    const newCount = isAlreadyActioned ? currentCount - 1 : currentCount + 1;
+    
+    buttonEl.classList.toggle(action === 'vote' ? 'voted' : 'unvoted', !isAlreadyActioned);
+    updateButtonStyle(buttonEl, !isAlreadyActioned, action);
+    countSpan.textContent = Math.max(0, newCount);
+    
+    // Handle opposite action
+    const oppositeButton = buttonEl.parentElement.querySelector(action === 'vote' ? '.unvote-btn' : '.vote-btn');
+    if (oppositeButton && oppositeButton.classList.contains(action === 'vote' ? 'unvoted' : 'voted')) {
+        oppositeButton.classList.remove(action === 'vote' ? 'unvoted' : 'voted');
+        updateButtonStyle(oppositeButton, false, action === 'vote' ? 'unvote' : 'vote');
+        const oppositeCountSpan = oppositeButton.querySelector(action === 'vote' ? '.unvote-count' : '.vote-count');
+        if (oppositeCountSpan) {
+            oppositeCountSpan.textContent = Math.max(0, parseInt(oppositeCountSpan.textContent) - 1 || 0);
         }
-
-        const isCurrentlyActioned = popupBtn.classList.contains(action === 'vote' ? 'voted' : 'unvoted');
-        if (isCurrentlyActioned && action === 'vote' && popupBtn.classList.contains('voted')) {
-            showToast('You have already voted for this post.', 'error');
-            return;
-        }
-        if (isCurrentlyActioned && action === 'unvote' && popupBtn.classList.contains('unvoted')) {
-            showToast('You have already unvoted this post.', 'error');
-            return;
-        }
-
-        const currentCount = parseInt(countElement.textContent) || 0;
-        const newCount = isCurrentlyActioned ? currentCount - 1 : currentCount + 1;
-
-        popupBtn.classList.toggle(action === 'vote' ? 'voted' : 'unvoted', !isCurrentlyActioned);
-        actionBtn.classList.toggle(action === 'vote' ? 'voted' : 'unvoted', !isCurrentlyActioned);
-        countElement.textContent = Math.max(0, newCount);
-
-        const oppositeBtn = document.getElementById(action === 'vote' ? 'popupUnvoteBtn' : 'popupVoteBtn');
-        const oppositeActionBtn = document.getElementById(action === 'vote' ? 'popupUnvoteActionBtn' :
-            'popupVoteActionBtn');
-        const oppositeCount = document.getElementById(action === 'vote' ? 'popupUnvoteCount' : 'popupVoteCount');
-
-        if (oppositeBtn.classList.contains(action === 'vote' ? 'unvoted' : 'voted')) {
-            oppositeBtn.classList.remove(action === 'vote' ? 'unvoted' : 'voted');
-            oppositeActionBtn.classList.remove(action === 'vote' ? 'unvoted' : 'voted');
-            if (oppositeCount) {
-                oppositeCount.textContent = Math.max(0, parseInt(oppositeCount.textContent) - 1 || 0);
-            }
-        }
-
-        const basePath = '/ncc_hacks/';
-        fetch(`${basePath}${action === 'vote' ? 'like_handler.php' : 'unlike_handler.php'}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `post_id=${currentPostData.id}&action=${isCurrentlyActioned ? 'remove' : 'add'}`
-            })
-            .then(response => {
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    countElement.textContent = action === 'vote' ? data.likes_count : data.unlikes_count;
-                    popupBtn.classList.toggle(action === 'vote' ? 'voted' : 'unvoted', data.action === (action ===
-                        'vote' ? 'liked' : 'unliked'));
-                    actionBtn.classList.toggle(action === 'vote' ? 'voted' : 'unvoted', data.action === (action ===
-                        'vote' ? 'liked' : 'unliked'));
-                    updateMainCardAction(currentPostData.id, action, data.action === (action === 'vote' ? 'liked' :
-                        'unliked'), action === 'vote' ? data.likes_count : data.unlikes_count);
-                    if (oppositeCount) {
-                        oppositeCount.textContent = action === 'vote' ? data.unlikes_count : data.likes_count;
-                    }
-                    showToast(data.action === (action === 'vote' ? 'liked' : 'unliked') ?
-                        `${action.charAt(0).toUpperCase() + action.slice(1)} added successfully!` :
-                        `${action.charAt(0).toUpperCase() + action.slice(1)} removed successfully!`, 'success');
-                } else {
-                    countElement.textContent = currentCount;
-                    popupBtn.classList.toggle(action === 'vote' ? 'voted' : 'unvoted');
-                    actionBtn.classList.toggle(action === 'vote' ? 'voted' : 'unvoted');
-                    showToast(data.message || 'Error occurred while processing your request', 'error');
-                }
-            })
-            .catch(error => {
-                console.error('Fetch error:', error);
-                countElement.textContent = currentCount;
-                popupBtn.classList.toggle(action === 'vote' ? 'voted' : 'unvoted');
-                actionBtn.classList.toggle(action === 'vote' ? 'voted' : 'unvoted');
-                showToast(`Network error: ${error.message}`, 'error');
-            })
-            .finally(() => {
-                popupBtn.classList.remove('loading');
-                actionBtn.classList.remove('loading');
-                popupBtn.style.opacity = '1';
-                actionBtn.style.opacity = '1';
-            });
     }
-
-    function handleVoteAction(buttonEl, action) {
-        if (buttonEl.classList.contains('loading')) return;
-        const postId = buttonEl.dataset.postId;
-
-        const basePath = '/ncc_hacks';
-        fetch(`${basePath}check_distance.php`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `id_post=${postId}`
-            })
-            .then(response => response.text())
-            .then(resFcd => {
-                if (resFcd.trim() === "1") {
-                    showToast("You are out of the region! You must be within 2 km radius to vote on this issue.",
-                        "error");
-                    return;
-                }
-                if (resFcd.trim() === "0") {
-                    processVoteAction(buttonEl, action, postId);
-                } else {
-                    showToast('Unable to verify your location. Please try again.', 'error');
-                }
-            })
-            .catch(error => {
-                console.error('Fetch error in check_distance:', error);
-                showToast('Failed to check your location. Please check your internet connection.', 'error');
-            });
-    }
-
-    function handlePopupAction(action) {
-        if (!currentPostData) return;
-        const popupBtn = document.getElementById(`popup${action.charAt(0).toUpperCase() + action.slice(1)}Btn`);
-        const actionBtn = document.getElementById(`popup${action.charAt(0).toUpperCase() + action.slice(1)}ActionBtn`);
-        const countElement = document.getElementById(`popup${action.charAt(0).toUpperCase() + action.slice(1)}Count`);
-
-        if (popupBtn.classList.contains('loading')) return;
-        popupBtn.classList.add('loading');
-        actionBtn.classList.add('loading');
-        popupBtn.style.opacity = '0.6';
-        actionBtn.style.opacity = '0.6';
-
-        const basePath = '/ncc_hacks/';
-        fetch(`${basePath}check_distance.php`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `id_post=${currentPostData.id}`
-            })
-            .then(response => response.text())
-            .then(resFcd => {
-                if (resFcd.trim() === "1") {
-                    showToast("You are out of the region! You must be within 1 km radius to vote on this issue.",
-                        "error");
-                    popupBtn.classList.remove('loading');
-                    actionBtn.classList.remove('loading');
-                    popupBtn.style.opacity = '1';
-                    actionBtn.style.opacity = '1';
-                    return;
-                }
-                if (resFcd.trim() === "0") {
-                    processPopupAction(action, popupBtn, actionBtn, countElement);
-                } else {
-                    showToast('Unable to verify your location. Please try again.', 'error');
-                    popupBtn.classList.remove('loading');
-                    actionBtn.classList.remove('loading');
-                    popupBtn.style.opacity = '1';
-                    actionBtn.style.opacity = '1';
-                }
-            })
-            .catch(error => {
-                console.error('Fetch error in check_distance:', error);
-                showToast('Failed to check your location. Please check your internet connection.', 'error');
-                popupBtn.classList.remove('loading');
-                actionBtn.classList.remove('loading');
-                popupBtn.style.opacity = '1';
-                actionBtn.style.opacity = '1';
-            });
-    }
-
-    function updateMainCardAction(postId, action, isActioned, newCount) {
-        const mainBtn = document.querySelector(`[data-post-id="${postId}"].${action}-btn`);
-        if (mainBtn) {
-            const countSpan = mainBtn.querySelector(`.${action}-count`);
-            mainBtn.classList.toggle(action === 'vote' ? 'voted' : 'unvoted', isActioned);
-            updateButtonStyle(mainBtn, isActioned, action);
-            if (countSpan) countSpan.textContent = newCount;
-
-            const oppositeBtn = document.querySelector(
-                `[data-post-id="${postId}"].${action === 'vote' ? 'unvote' : 'vote'}-btn`);
-            if (oppositeBtn && oppositeBtn.classList.contains(action === 'vote' ? 'unvoted' : 'voted')) {
-                oppositeBtn.classList.remove(action === 'vote' ? 'unvoted' : 'voted');
-                updateButtonStyle(oppositeBtn, false, action === 'vote' ? 'unvote' : 'vote');
-                const oppositeCountSpan = oppositeBtn.querySelector(action === 'vote' ? '.unvote-count' :
-                '.vote-count');
+    
+    // API Call
+    fetch(`${basePath}${action === 'vote' ? 'like_handler.php' : 'unlike_handler.php'}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `post_id=${postId}&action=${isAlreadyActioned ? 'remove' : 'add'}`
+    })
+    .then(response => {
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            countSpan.textContent = action === 'vote' ? data.likes_count : data.unlikes_count;
+            updateButtonState(buttonEl, data.action === (action === 'vote' ? 'liked' : 'unliked'), action);
+            if (oppositeButton) {
+                const oppositeCountSpan = oppositeButton.querySelector(action === 'vote' ? '.unvote-count' : '.vote-count');
                 if (oppositeCountSpan) {
-                    oppositeCountSpan.textContent = action === 'vote' ? currentPostData.unvotesCount : currentPostData
-                        .votesCount;
+                    oppositeCountSpan.textContent = action === 'vote' ? data.unlikes_count : data.likes_count;
                 }
+            }
+            updateMainCardAction(postId, action, data.action === (action === 'vote' ? 'liked' : 'unliked'), action === 'vote' ? data.likes_count : data.unlikes_count);
+            showToast(data.action === (action === 'vote' ? 'liked' : 'unliked') ? `${action.charAt(0).toUpperCase() + action.slice(1)} added successfully!` : `${action.charAt(0).toUpperCase() + action.slice(1)} removed successfully!`, 'success');
+        } else {
+            // Revert changes
+            countSpan.textContent = currentCount;
+            buttonEl.classList.toggle(action === 'vote' ? 'voted' : 'unvoted');
+            updateButtonStyle(buttonEl, isAlreadyActioned, action);
+            showToast(data.message || 'Error occurred while processing your request', 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Fetch error:', error);
+        // Revert changes
+        countSpan.textContent = currentCount;
+        buttonEl.classList.toggle(action === 'vote' ? 'voted' : 'unvoted');
+        updateButtonStyle(buttonEl, isAlreadyActioned, action);
+        showToast(`Network error: ${error.message}`, 'error');
+    })
+    .finally(() => {
+        buttonEl.classList.remove('loading');
+        buttonEl.style.opacity = '1';
+        buttonEl.style.cursor = 'pointer';
+    });
+}
+
+function processPopupAction(action, popupBtn, actionBtn, countElement) {
+    if (!countElement || !currentPostData) {
+        console.error(`Count element or post data for ${action} not found`);
+        showToast('Error: Unable to update count. Please try again.', 'error');
+        return;
+    }
+    
+    const isCurrentlyActioned = popupBtn.classList.contains(action === 'vote' ? 'voted' : 'unvoted');
+    if (isCurrentlyActioned && action === 'vote' && popupBtn.classList.contains('voted')) {
+        showToast('You have already voted for this post.', 'error');
+        return;
+    }
+    if (isCurrentlyActioned && action === 'unvote' && popupBtn.classList.contains('unvoted')) {
+        showToast('You have already unvoted this post.', 'error');
+        return;
+    }
+    
+    const currentCount = parseInt(countElement.textContent) || 0;
+    const newCount = isCurrentlyActioned ? currentCount - 1 : currentCount + 1;
+    
+    popupBtn.classList.toggle(action === 'vote' ? 'voted' : 'unvoted', !isCurrentlyActioned);
+    actionBtn.classList.toggle(action === 'vote' ? 'voted' : 'unvoted', !isCurrentlyActioned);
+    countElement.textContent = Math.max(0, newCount);
+    
+    // Handle opposite action in popup
+    const oppositeBtn = document.getElementById(action === 'vote' ? 'popupUnvoteBtn' : 'popupVoteBtn');
+    const oppositeActionBtn = document.getElementById(action === 'vote' ? 'popupUnvoteActionBtn' : 'popupVoteActionBtn');
+    const oppositeCount = document.getElementById(action === 'vote' ? 'popupUnvoteCount' : 'popupVoteCount');
+    
+    if (oppositeBtn && oppositeBtn.classList.contains(action === 'vote' ? 'unvoted' : 'voted')) {
+        oppositeBtn.classList.remove(action === 'vote' ? 'unvoted' : 'voted');
+        oppositeActionBtn.classList.remove(action === 'vote' ? 'unvoted' : 'voted');
+        if (oppositeCount) {
+            oppositeCount.textContent = Math.max(0, parseInt(oppositeCount.textContent) - 1 || 0);
+        }
+    }
+    
+    // API Call
+    fetch(`${basePath}${action === 'vote' ? 'like_handler.php' : 'unlike_handler.php'}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `post_id=${currentPostData.id}&action=${isCurrentlyActioned ? 'remove' : 'add'}`
+    })
+    .then(response => {
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            countElement.textContent = action === 'vote' ? data.likes_count : data.unlikes_count;
+            const isActioned = data.action === (action === 'vote' ? 'liked' : 'unliked');
+            popupBtn.classList.toggle(action === 'vote' ? 'voted' : 'unvoted', isActioned);
+            actionBtn.classList.toggle(action === 'vote' ? 'voted' : 'unvoted', isActioned);
+            updateMainCardAction(currentPostData.id, action, isActioned, action === 'vote' ? data.likes_count : data.unlikes_count);
+            if (oppositeCount) {
+                oppositeCount.textContent = action === 'vote' ? data.unlikes_count : data.likes_count;
+            }
+            showToast(isActioned ? `${action.charAt(0).toUpperCase() + action.slice(1)} added successfully!` : `${action.charAt(0).toUpperCase() + action.slice(1)} removed successfully!`, 'success');
+        } else {
+            // Revert changes
+            countElement.textContent = currentCount;
+            popupBtn.classList.toggle(action === 'vote' ? 'voted' : 'unvoted');
+            actionBtn.classList.toggle(action === 'vote' ? 'voted' : 'unvoted');
+            showToast(data.message || 'Error occurred while processing your request', 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Fetch error:', error);
+        // Revert changes
+        countElement.textContent = currentCount;
+        popupBtn.classList.toggle(action === 'vote' ? 'voted' : 'unvoted');
+        actionBtn.classList.toggle(action === 'vote' ? 'voted' : 'unvoted');
+        showToast(`Network error: ${error.message}`, 'error');
+    })
+    .finally(() => {
+        popupBtn.classList.remove('loading');
+        actionBtn.classList.remove('loading');
+        popupBtn.style.opacity = '1';
+        actionBtn.style.opacity = '1';
+    });
+}
+
+// Distance Check Wrapper
+function handleVoteAction(buttonEl, action) {
+    if (buttonEl.classList.contains('loading')) return;
+    const postId = buttonEl.dataset.postId;
+    buttonEl.classList.add('loading');
+    buttonEl.style.opacity = '0.6';
+    buttonEl.style.cursor = 'not-allowed';
+
+    fetch(`${basePath}check_distance.php`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `id_post=${postId}`
+    })
+    .then(response => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.text();
+    })
+    .then(resFcd => {
+        const trimmed = resFcd.trim();
+        console.log(`Distance check response: "${trimmed}"`); // Debug log
+        if (trimmed === "1") {
+            showToast("You are out of the region! You must be within 1 km radius to vote on this issue.", "error");
+        } else if (trimmed === "0") {
+            processVoteAction(buttonEl, action, postId);
+        } else if (trimmed === "error") {
+            showToast('Post not found or invalid. Please refresh.', 'error');
+        } else {
+            showToast('Unable to verify location. Check console for details.', 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Fetch error:', error);
+        showToast('Network error: Please check your connection.', 'error');
+    })
+    .finally(() => {
+        buttonEl.classList.remove('loading');
+        buttonEl.style.opacity = '1';
+        buttonEl.style.cursor = 'pointer';
+    });
+}
+
+function handlePopupAction(action) {
+    if (!currentPostData) return;
+    const popupBtn = document.getElementById(`popup${action.charAt(0).toUpperCase() + action.slice(1)}Btn`);
+    const actionBtn = document.getElementById(`popup${action.charAt(0).toUpperCase() + action.slice(1)}ActionBtn`);
+    const countElement = document.getElementById(`popup${action.charAt(0).toUpperCase() + action.slice(1)}Count`);
+    
+    if (popupBtn.classList.contains('loading')) return;
+    popupBtn.classList.add('loading');
+    actionBtn.classList.add('loading');
+    popupBtn.style.opacity = '0.6';
+    actionBtn.style.opacity = '0.6';
+
+    fetch(`${basePath}check_distance.php`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `id_post=${currentPostData.id}`
+    })
+    .then(response => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.text();
+    })
+    .then(resFcd => {
+        const trimmed = resFcd.trim();
+        console.log(`Popup distance check response: "${trimmed}"`); // Debug log
+        if (trimmed === "1") {
+            showToast("You are out of the region! You must be within 1 km radius to vote on this issue.", "error");
+        } else if (trimmed === "0") {
+            processPopupAction(action, popupBtn, actionBtn, countElement);
+        } else if (trimmed === "error") {
+            showToast('Post not found or invalid. Please refresh.', 'error');
+        } else {
+            showToast('Unable to verify location. Check console for details.', 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Fetch error:', error);
+        showToast('Network error: Please check your connection.', 'error');
+    })
+    .finally(() => {
+        popupBtn.classList.remove('loading');
+        actionBtn.classList.remove('loading');
+        popupBtn.style.opacity = '1';
+        actionBtn.style.opacity = '1';
+    });
+}
+
+// Update Helpers
+function updateMainCardAction(postId, action, isActioned, newCount) {
+    const mainBtn = document.querySelector(`[data-post-id="${postId}"].${action}-btn`);
+    if (mainBtn) {
+        const countSpan = mainBtn.querySelector(`.${action}-count`);
+        mainBtn.classList.toggle(action === 'vote' ? 'voted' : 'unvoted', isActioned);
+        updateButtonStyle(mainBtn, isActioned, action);
+        if (countSpan) countSpan.textContent = newCount;
+        
+        const oppositeBtn = document.querySelector(`[data-post-id="${postId}"].${action === 'vote' ? 'unvote' : 'vote'}-btn`);
+        if (oppositeBtn && oppositeBtn.classList.contains(action === 'vote' ? 'unvoted' : 'voted')) {
+            oppositeBtn.classList.remove(action === 'vote' ? 'unvoted' : 'voted');
+            updateButtonStyle(oppositeBtn, false, action === 'vote' ? 'unvote' : 'vote');
+            const oppositeCountSpan = oppositeBtn.querySelector(action === 'vote' ? '.unvote-count' : '.vote-count');
+            if (oppositeCountSpan) {
+                oppositeCountSpan.textContent = action === 'vote' ? currentPostData.unvotesCount : currentPostData.votesCount;
             }
         }
     }
+}
 
-    function updateButtonStyle(button, isActive, action) {
-        button.style.background = isActive ? (action === 'vote' ? '#10b981' : '#ef4444') : 'white';
-        button.style.color = isActive ? 'white' : (action === 'vote' ? '#10b981' : '#ef4444');
+function updateButtonStyle(button, isActive, action) {
+    if (isActive) {
+        button.style.background = action === 'vote' ? '#10b981' : '#ef4444';
+        button.style.color = 'white';
+        button.style.borderColor = action === 'vote' ? '#10b981' : '#ef4444';
+    } else {
+        button.style.background = 'white';
+        button.style.color = action === 'vote' ? '#10b981' : '#ef4444';
+        button.style.borderColor = '#e2e8f0';
     }
+}
 
-    function updateButtonState(button, isActive, action) {
-        button.classList.toggle(action === 'vote' ? 'voted' : 'unvoted', isActive);
-        updateButtonStyle(button, isActive, action);
+function updateButtonState(button, isActive, action) {
+    button.classList.toggle(action === 'vote' ? 'voted' : 'unvoted', isActive);
+    updateButtonStyle(button, isActive, action);
+}
+
+// Share and Report
+function sharePost() {
+    if (!currentPostData) return;
+    if (navigator.share) {
+        navigator.share({
+            title: currentPostData.title,
+            text: `Check out this community issue: ${currentPostData.title}`,
+            url: window.location.href
+        });
+    } else {
+        navigator.clipboard.writeText(`Check out this community issue: "${currentPostData.title}" at ${currentPostData.location}`)
+            .then(() => showToast('Share link copied to clipboard!', 'success'))
+            .catch(() => showToast('Failed to copy to clipboard.', 'error'));
     }
+}
 
+function reportPost() {
+    if (!currentPostData) return;
+    const reasons = ['Inappropriate content', 'Spam', 'Fake/Misleading information', 'Offensive language', 'Copyright violation', 'Other'];
+    const reasonInput = prompt(`Why are you reporting this post?\n\n${reasons.map((r, i) => `${i+1}. ${r}`).join('\n')}\n\nEnter the number (1-${reasons.length}):`);
+    const reasonNum = parseInt(reasonInput);
+    if (reasonNum >= 1 && reasonNum <= reasons.length) {
+        showToast(`Post reported for: ${reasons[reasonNum-1]}`, 'success');
+        console.log(`Reported post ${currentPostData.id} for: ${reasons[reasonNum-1]}`);
+        // Optional: Send report to server here
+    } else {
+        showToast('Invalid selection. Report cancelled.', 'error');
+    }
+}
+
+// Comments Polling and Submission
+function loadComments(problemId) {
+    fetch(`${basePath}get_comments.php?problem_id=${problemId}`)
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('comments-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading comments:', error));
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Form Validation
     document.getElementById('issueForm').addEventListener('submit', (e) => {
         const latValue = document.getElementById('latitude').value;
         const lngValue = document.getElementById('longitude').value;
@@ -3861,71 +3992,68 @@ $sidebar_result = mysqli_stmt_get_result($sidebar_stmt);
         }
     });
 
-    document.querySelector('.photo-upload').addEventListener('dragover', (e) => {
+    // Photo Upload Handling
+    const photoUpload = document.querySelector('.photo-upload');
+    photoUpload.addEventListener('dragover', (e) => {
         e.preventDefault();
-        e.currentTarget.classList.add('dragover');
+        photoUpload.classList.add('dragover');
     });
-
-    document.querySelector('.photo-upload').addEventListener('dragleave', (e) => {
+    photoUpload.addEventListener('dragleave', (e) => {
         e.preventDefault();
-        e.currentTarget.classList.remove('dragover');
+        photoUpload.classList.remove('dragover');
     });
-
-    document.querySelector('.photo-upload').addEventListener('drop', (e) => {
+    photoUpload.addEventListener('drop', (e) => {
         e.preventDefault();
-        e.currentTarget.classList.remove('dragover');
+        photoUpload.classList.remove('dragover');
         const files = e.dataTransfer.files;
         if (files.length > 0) {
             document.getElementById('photoInput').files = files;
-            const event = new Event('change', {
-                bubbles: true
-            });
+            const event = new Event('change', { bubbles: true });
             document.getElementById('photoInput').dispatchEvent(event);
         }
     });
-
     document.getElementById('photoInput').addEventListener('change', (e) => {
         const file = e.target.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = (e) => {
-                document.querySelector('.photo-upload').innerHTML = `
-                <div style="text-align: center;">
-                    <img src="${e.target.result}" style="max-width: 100%; max-height: 150px; border-radius: 8px; margin-bottom: 0.5rem;">
-                    <div style="color: #10b981;">
-                        <i class="fas fa-check-circle" style="margin-right: 0.5rem;"></i> Photo uploaded successfully
+                photoUpload.innerHTML = `
+                    <div style="text-align: center;">
+                        <img src="${e.target.result}" style="max-width: 100%; max-height: 150px; border-radius: 8px; margin-bottom: 0.5rem;">
+                        <div style="color: #10b981;">
+                            <i class="fas fa-check-circle" style="margin-right: 0.5rem;"></i> Photo uploaded successfully
+                        </div>
+                        <div style="color: #64748b; font-size: 0.9rem;">
+                            Click to change photo
+                        </div>
                     </div>
-                    <div style="color: #64748b; font-size: 0.9rem;">
-                        Click to change photo
-                    </div>
-                </div>
-            `;
+                `;
             };
             reader.readAsDataURL(file);
         }
     });
 
+    // Event Listeners
     document.querySelector('.report-btn').addEventListener('click', openModal);
 
+    // Search Functionality
     document.querySelector('.search-input').addEventListener('input', (e) => {
         const searchTerm = e.target.value.toLowerCase();
         document.querySelectorAll('.issue-card').forEach(card => {
-            const title = card.querySelector('.issue-title').textContent.toLowerCase();
-            const description = card.querySelector('.issue-description').textContent.toLowerCase();
-            const location = card.querySelector('.issue-meta').textContent.toLowerCase();
-            card.style.display = (title.includes(searchTerm) || description.includes(searchTerm) ||
-                location.includes(searchTerm)) ? 'block' : 'none';
+            const title = card.querySelector('.issue-title')?.textContent.toLowerCase() || '';
+            const description = card.querySelector('.issue-description')?.textContent.toLowerCase() || '';
+            const location = card.querySelector('.issue-meta')?.textContent.toLowerCase() || '';
+            card.style.display = (title.includes(searchTerm) || description.includes(searchTerm) || location.includes(searchTerm)) ? 'block' : 'none';
         });
     });
 
+    // Modal and Popup Clicks
     document.getElementById('reportModal').addEventListener('click', (e) => {
         if (e.target === e.currentTarget) closeModal();
     });
-
     document.getElementById('postPopup').addEventListener('click', (e) => {
         if (e.target === e.currentTarget) closePostPopup();
     });
-
     document.getElementById('mapShower').addEventListener('click', () => {
         if (currentPostData) {
             const coords = currentPostData.coordinates.split(', ');
@@ -3933,6 +4061,7 @@ $sidebar_result = mysqli_stmt_get_result($sidebar_stmt);
         }
     });
 
+    // Keyboard Navigation
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             if (document.getElementById('reportModal').classList.contains('active')) closeModal();
@@ -3940,103 +4069,72 @@ $sidebar_result = mysqli_stmt_get_result($sidebar_stmt);
         }
     });
 
-    document.getElementById('notificationToggle').addEventListener('click', () => {
+    // Notification Toggle
+    document.getElementById('notificationToggle')?.addEventListener('click', () => {
         document.getElementById('notificationPopup').classList.toggle('show');
     });
 
-    document.addEventListener('DOMContentLoaded', () => {
-        document.getElementById('popupVoteBtn').addEventListener('click', () => handlePopupAction('vote'));
-        document.getElementById('popupUnvoteBtn').addEventListener('click', () => handlePopupAction('unvote'));
-        document.getElementById('popupVoteActionBtn').addEventListener('click', () => handlePopupAction(
-            'vote'));
-        document.getElementById('popupUnvoteActionBtn').addEventListener('click', () => handlePopupAction(
-            'unvote'));
-        document.querySelectorAll('.issue-card').forEach(card => {
-            card.addEventListener('click', (e) => {
-                if (e.target.closest('.vote-btn, .unvote-btn, .stat a')) return;
-                const postData = extractPostData(card);
-                if (postData) openPostPopup(postData);
-            });
-        });
-        document.querySelectorAll('.vote-btn').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                handleVoteAction(button, 'vote');
-            });
-        });
-        document.querySelectorAll('.unvote-btn').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                handleVoteAction(button, 'unvote');
-            });
+    // Popup Action Listeners
+    document.getElementById('popupVoteBtn')?.addEventListener('click', () => handlePopupAction('vote'));
+    document.getElementById('popupUnvoteBtn')?.addEventListener('click', () => handlePopupAction('unvote'));
+    document.getElementById('popupVoteActionBtn')?.addEventListener('click', () => handlePopupAction('vote'));
+    document.getElementById('popupUnvoteActionBtn')?.addEventListener('click', () => handlePopupAction('unvote'));
+
+    // Card Click for Popup
+    document.querySelectorAll('.issue-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            if (e.target.closest('.vote-btn, .unvote-btn, .stat a')) return;
+            const postData = extractPostData(card);
+            if (postData) openPostPopup(postData);
         });
     });
 
-    function sharePost() {
-        if (!currentPostData) return;
-        if (navigator.share) {
-            navigator.share({
-                title: currentPostData.title,
-                text: `Check out this community issue: ${currentPostData.title}`,
-                url: window.location.href
-            });
-        } else {
-            navigator.clipboard.writeText(
-                    `Check out this community issue: "${currentPostData.title}" at ${currentPostData.location}`)
-                .then(() => showToast('Share link copied to clipboard!', 'success'));
-        }
-    }
+    // Vote/Unvote Listeners
+    document.querySelectorAll('.vote-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            handleVoteAction(button, 'vote');
+        });
+    });
+    document.querySelectorAll('.unvote-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            handleVoteAction(button, 'unvote');
+        });
+    });
 
-    function reportPost() {
-        if (!currentPostData) return;
-        const reasons = ['Inappropriate content', 'Spam', 'Fake/Misleading information', 'Offensive language',
-            'Copyright violation', 'Other'
-        ];
-        const reason = prompt(
-            `Why are you reporting this post?\n\n${reasons.map((r, i) => `${i+1}. ${r}`).join('\n')}\n\nEnter the number (1-${reasons.length}):`
-        );
-        if (reason && reason >= 1 && reason <= reasons.length) {
-            showToast(`Post reported for: ${reasons[reason-1]}`, 'success');
-            console.log(`Reported post ${currentPostData.id} for: ${reasons[reason-1]}`);
-        }
-    }
-
-    setInterval(() => {
-        if (postId) {
-            fetch(`get_comments.php?problem_id=${postId}`)
-                .then(response => response.text())
-                .then(data => document.getElementById('comments-container').innerHTML = data)
-                .catch(error => console.error('Error loading comments:', error));
-        }
-    }, 1000);
-
-    document.getElementById('btn').addEventListener('click', () => {
-        const comment = document.getElementById('ipt').value.trim();
+    // Comment Submission
+    document.getElementById('btn')?.addEventListener('click', () => {
+        const comment = document.getElementById('ipt')?.value.trim();
         if (!comment) {
             showToast('Please enter a comment', 'error');
             return;
         }
-        fetch('save_comment.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `problem_id=${postId}&comment=${encodeURIComponent(comment)}`
-            })
-            .then(response => response.text())
-            .then(() => {
-                document.getElementById('ipt').value = '';
-                if (postId) {
-                    fetch(`get_comments.php?problem_id=${postId}`)
-                        .then(response => response.text())
-                        .then(data => document.getElementById('comments-container').innerHTML = data);
-                }
-            })
-            .catch(error => console.error('Error saving comment:', error));
+        fetch(`${basePath}save_comment.php`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `problem_id=${postId}&comment=${encodeURIComponent(comment)}`
+        })
+        .then(response => response.text())
+        .then(() => {
+            document.getElementById('ipt').value = '';
+            if (postId) loadComments(postId);
+            showToast('Comment posted successfully!', 'success');
+        })
+        .catch(error => {
+            console.error('Error saving comment:', error);
+            showToast('Failed to post comment.', 'error');
+        });
     });
-    </script>
+});
+
+// Polling for Comments (only if postId is set, e.g., in popup)
+if (postId) {
+    setInterval(() => loadComments(postId), 5000); // Poll every 5 seconds
+}
+</script>
 </body>
 
 </html>
